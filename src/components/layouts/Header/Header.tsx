@@ -2,7 +2,7 @@ import React, { FC } from "react";
 import { useNavigate } from "react-router-dom";
 import { IHeaderProps } from "./types";
 
-const Header: FC<IHeaderProps> = ({ firstName }: IHeaderProps) => {
+const Header: FC<IHeaderProps> = ({ user: { firstName } }: IHeaderProps) => {
   const navigate = useNavigate();
 
   const handleLogOut = () => {

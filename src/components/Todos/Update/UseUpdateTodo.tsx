@@ -1,18 +1,20 @@
-import React, { FC, useState, useEffect } from 'react';
-import axios from 'axios';
-import UpdateTodo from './UpdateTodo';
-import { useNavigate, useParams } from 'react-router-dom';
+import React, { FC, useState, useEffect, ChangeEvent, FormEvent } from "react";
+import axios from "axios";
+import UpdateTodo from "./UpdateTodo";
+import { useNavigate, useParams } from "react-router-dom";
+import { Todos } from "../Display/DisplayTodosProps";
+import { UserInfo } from "../../Users/Register/RegistrationProps";
 
 const UseUpdateTodo: FC = () => {
   const navigate = useNavigate();
   const params = useParams();
 
-  const [user, setUser] = useState({});
-  const [todo, setTodo] = useState({});
+  const [user, setUser] = useState<UserInfo | null>({} as UserInfo);
+  const [todo, setTodo] = useState<Todos>({} as Todos);
 
   const fetchUser = async () => {
-    const accessToken = JSON.parse(localStorage.getItem('accessToken'));
-    const userId = JSON.parse(localStorage.getItem('userId'));
+    const accessToken = JSON.parse(localStorage.getItem("accessToken") || "");
+    const userId = JSON.parse(localStorage.getItem("userId") || "");
 
     const response = await axios.get(`http://localhost:2014/users/${userId}`, {
       headers: {
@@ -28,7 +30,9 @@ const UseUpdateTodo: FC = () => {
     fetchUser();
   }, []);
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setTodo((prevTodo) => ({ ...prevTodo, [name]: value }));
   };
@@ -37,29 +41,35 @@ const UseUpdateTodo: FC = () => {
     user?.todos?.map((todo) => todo.id === params.id && setTodo(todo));
   }, [user, params.id]);
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (todo)
-      user.todos.forEach((item, index) => {
-        if (item.id === params.id) {
-          user.todos[index] = todo;
+      user?.todos?.forEach((item, index) => {
+        if (item?.id === params.id) {
+          user?.todos[index] = todo;
 
           setUser((prevState) => ({ ...prevState }));
         }
       });
 
     try {
-      await axios.put('http://localhost:2014/users', user);
-      navigate('/todos');
+      await axios.put("http://localhost:2014/users", user);
+      navigate("/todos");
     } catch (err) {
       console.log(err);
     }
 
-    setTodo({ todo: '', description: '' });
+    setTodo({ todo: "", description: "" });
   };
 
-  return <UpdateTodo handleSubmit={handleSubmit} handleChange={handleChange} todo={todo} />;
+  return (
+    <UpdateTodo
+      handleSubmit={handleSubmit}
+      handleChange={handleChange}
+      todo={todo}
+    />
+  );
 };
 
 export default UseUpdateTodo;

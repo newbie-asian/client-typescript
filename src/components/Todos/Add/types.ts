@@ -1,15 +1,8 @@
 import { ChangeEvent, FormEvent } from "react";
-
-export interface User {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  password?: string;
-  todos?: Todos[];
-}
+import { UserInfo } from "../../Users/Register/RegistrationProps";
 
 export interface IUseAddTodoProps {
-  user: User;
+  user?: UserInfo;
   setUser: (_args: any) => any;
 }
 

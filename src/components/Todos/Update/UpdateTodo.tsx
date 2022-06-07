@@ -1,8 +1,8 @@
-import { FC } from 'react';
-import TextField from '@components/forms/TextField/TextField';
-import TextArea from '@components/forms/TextArea/TextArea';
-import Button from '@components/buttons/Button';
-import { styles } from '../../../utils/Styles/styles';
+import { FC } from "react";
+import TextField from "@components/forms/TextField/TextField";
+import TextArea from "@components/forms/TextArea/TextArea";
+import Button from "@components/buttons/Button";
+import { styles } from "../../../utils/Styles/styles";
 
 const UpdateTodo: FC = ({ todo, handleChange, handleSubmit }) => (
   <div className="mx-5">
@@ -15,9 +15,18 @@ const UpdateTodo: FC = ({ todo, handleChange, handleSubmit }) => (
         genStyles={styles?.formFields.general}
         uniqueStyles={styles?.formFields.textField}
       />
-      <TextArea name="description" handleChange={handleChange} placeholder={todo.description} styles={styles} />
+      <TextArea
+        name="description"
+        handleChange={handleChange}
+        placeholder={todo.description}
+        styles={styles}
+      />
 
-      <Button btnTitle="Update Todo" genStyles={styles?.button.general} uniqueStyles={styles?.button.updateTodo} />
+      <Button
+        btnTitle="Update Todo"
+        genStyles={styles?.button.general}
+        uniqueStyles={styles?.button.updateTodo}
+      />
     </form>
   </div>
 );

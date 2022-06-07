@@ -43,7 +43,7 @@ const Dashboard: FC = () => {
 
   return (
     <>
-      <Header {...user} />
+      <Header user={user} />
       <section className="w-full sm:w-[40rem] mx-auto">
         <UseAddTodo user={user} setUser={setUser} />
         <div className="flex flex-col justify-center items-center mx-5">

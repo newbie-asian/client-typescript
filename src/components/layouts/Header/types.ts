@@ -1,3 +1,4 @@
+import { UserInfo } from "../../Users/Register/RegistrationProps";
 export interface CreatedDate {
   value: string;
   timeZone: string;
@@ -11,9 +12,5 @@ export interface Todos {
 }
 
 export interface IHeaderProps {
-  firstName?: string;
-  lastName?: string;
-  email?: string;
-  password?: string;
-  todos?: Todos[];
+  user: UserInfo;
 }
