@@ -1,3 +1,5 @@
+import { CreatedDate } from "../../layouts/Header/types";
+
 export interface Todos {
   id: string;
   title: string;
@@ -6,6 +8,7 @@ export interface Todos {
   createdDate: CreatedDate;
   deadline: string;
 }
+
 export interface User {
   firstName?: string;
   lastName?: string;

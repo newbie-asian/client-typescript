@@ -10,7 +10,7 @@ function addZerosToDay(today: any) {
   return today.getDate() < 10 ? `0${today.getDate()}` : today.getDate();
 }
 
-const UseDisplayTodos: FC = ({ user, setUser }) => {
+const UseDisplayTodos: FC<UserInfo> = ({ user, setUser }) => {
   // * generate today's date
   const today = useMemo(() => new Date(), []);
   // * added 0 to every month from Jan to Sept and 0 to days from 1 to 9

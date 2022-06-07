@@ -1,6 +1,12 @@
 import React, { FC } from "react";
+import { IButtonIcons } from "./types";
 
-const ButtonIcon: FC = ({ styles, handler, btnTitle, disable }) => (
+const ButtonIcon: FC<IButtonIcons> = ({
+  styles,
+  handler,
+  btnTitle,
+  disable,
+}) => (
   <button onClick={handler} className={styles} disabled={disable}>
     {btnTitle}
   </button>
